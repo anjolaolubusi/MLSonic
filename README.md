@@ -9,7 +9,7 @@ This project is designed to test a machine learning algorithm against the sonic 
 - Let your group partner check before you do a pull request
 
 ## Meeting Times
-- 8pm for Anjola and 9am for Karen 
+- Saturday 8pm for Anjola and Sunday 9am for Karen 
 
 ## To-do
 - Research Algorithm to use - Karen
