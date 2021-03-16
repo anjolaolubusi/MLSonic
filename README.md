@@ -9,6 +9,5 @@ This project is designed to test a machine learning algorithm against the sonic 
 - Set up testing environment - Anjola
 
 # Authors
-[Anjolaoluwa Olubusi](https://github.com/anjolaolubusi)
-
-[Karen Suzue](https://github.com/karensuzue)
+- [Anjolaoluwa Olubusi](https://github.com/anjolaolubusi)
+- [Karen Suzue](https://github.com/karensuzue)
