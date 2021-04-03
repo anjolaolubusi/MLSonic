@@ -4,6 +4,7 @@ import os
 import cv2
 import numpy as np
 
+#Runs at 60 FPS
 env = retro.make(game = "SonicTheHedgehog-Genesis", state = "GreenHillZone.Act2")
 def eval_genomes(genomes, config):
     current_max_fitness = 0
@@ -21,30 +22,34 @@ def eval_genomes(genomes, config):
         counter = 0
         xpos = 0
         done = False
-        env.render()
-        frame += 1
-        ob = cv2.resize(ob, (inx, iny))
-        ob = cv2.cvtColor(ob, cv2.COLOR_BGR2GRAY)
-        ob = np.reshape(ob, (inx,iny))
-        imgarray = []
-        imgarray = np.ndarray.flatten(ob)
-        nnOutput = net.activate(imgarray)
-        ob, rew, done, info = env.step(nnOutput)
-        xpos = info['x']
-        if xpos >= 10000:
-            fitness_current += 10000
-            done = True
-        fitness_current += rew
-        if fitness_current > current_max_fitness:
-                current_max_fitness = fitness_current
-                counter = 0
-        else:
-                counter += 1
-        if done or counter == 250:
-            done = True
-            print(genome_id, fitness_current)
-                
-        genome.fitness = fitness_current
+        while done is False:
+            env.render()
+            frame += 1
+            ob = cv2.resize(ob, (inx, iny))
+            ob = cv2.cvtColor(ob, cv2.COLOR_BGR2GRAY)
+            ob = np.reshape(ob, (inx,iny))
+            imgarray = []
+            imgarray = np.ndarray.flatten(ob)
+            nnOutput = net.activate(imgarray)
+            ob, rew, done, info = env.step(nnOutput)
+            xpos = info['x']
+            fitness_current -= 30
+            if xpos >= 10000:
+                fitness_current += 10000
+                done = True
+            fitness_current += xpos - 80
+            if fitness_current > current_max_fitness:
+                    current_max_fitness = fitness_current
+                    counter = 0
+            else:
+                    counter += 1
+            
+            genome.fitness = fitness_current
+            
+            if done or fitness_current < -5000:
+                done = True
+                print(genome_id, fitness_current)
+
 
 
 def run(config_file):
