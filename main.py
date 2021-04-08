@@ -3,13 +3,16 @@ import retro
 import os
 import cv2
 import numpy as np
+import pickle
+import visualize
+import send_mail
 
 #Runs at 60 FPS
-env = retro.make(game = "SonicTheHedgehog-Genesis", state = "GreenHillZone.Act2")
+env = retro.make(game = "SonicTheHedgehog-Genesis", state = "GreenHillZone.Act1")
 def eval_genomes(genomes, config):
     current_max_fitness = 0
     for genome_id, genome in genomes:
-        genome.gitneess = 4.0
+        genome.fitneess = 4.0
         neat.nn.FeedForwardNetwork.create(genome, config)
         ob = env.reset()
         ac = env.action_space.sample()
@@ -22,6 +25,7 @@ def eval_genomes(genomes, config):
         counter = 0
         xpos = 0
         done = False
+        oldX = 80
         while done is False:
             env.render()
             frame += 1
@@ -33,20 +37,23 @@ def eval_genomes(genomes, config):
             nnOutput = net.activate(imgarray)
             ob, rew, done, info = env.step(nnOutput)
             xpos = info['x']
-            fitness_current -= 30
             if xpos >= 10000:
                 fitness_current += 10000
                 done = True
-            fitness_current += xpos - 80
+            if(xpos > oldX):
+                fitness_current += xpos - 80
+            else:
+                fitness_current -= oldX
             if fitness_current > current_max_fitness:
                     current_max_fitness = fitness_current
                     counter = 0
             else:
                     counter += 1
             
+            #print("OLDX: {}, CURR_X: {}, fitness: {}".format(oldX, xpos, fitness_current))
             genome.fitness = fitness_current
-            
-            if done or fitness_current < -5000:
+            oldX = xpos
+            if done or fitness_current < -8000 or info['lives'] < 3 or frame > 1800:
                 done = True
                 print(genome_id, fitness_current)
 
@@ -62,10 +69,17 @@ def run(config_file):
     p.add_reporter(stats)
     p.add_reporter(neat.Checkpointer(1))
 
-    winner = p.run(eval_genomes)
-
+    winner = p.run(eval_genomes, 5)
+    
     with open('winner.pkl', 'wb') as output:
         pickle.dump(winner, output, 1)
+    visualize.plot_stats(stats, ylog=False, view=True)
+    visualize.plot_species(stats, view=True)
+    try:
+        send_mail.SendNNData("anjolaolubusi@gmail.com")
+        send_mail.SendNNData("ksuzue22@wooster.edu")
+    except:
+        print("Could not send email")
 
 def main():
     local_dir = os.path.dirname(__file__)

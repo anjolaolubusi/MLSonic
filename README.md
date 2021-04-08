@@ -1,6 +1,9 @@
 # MLSonic
 This project is designed to test a machine learning algorithm against the sonic games. This algorithm will try and complete the level in the shortest time possible. I.e SONIC GO SUPER VROOM
 
+## Running
+You would need a userdata.json
+
 ## Language and Documentation
  - Python
  - Use multi-line comments to describe functions
