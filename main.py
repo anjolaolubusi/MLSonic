@@ -74,10 +74,11 @@ def run(config_file):
     with open('winner.pkl', 'wb') as output:
         pickle.dump(winner, output, 1)
     visualize.plot_stats(stats, ylog=False, view=True)
-    visualize.plot_species(stats, view=True)
+    visualize.plot_species(stats, view=True) 
+    #visualize.draw_net(config, winner, view=False)
     try:
         send_mail.SendNNData("anjolaolubusi@gmail.com")
-        send_mail.SendNNData("ksuzue22@wooster.edu")
+        #send_mail.SendNNData("ksuzue22@wooster.edu")
     except:
         print("Could not send email")
 
