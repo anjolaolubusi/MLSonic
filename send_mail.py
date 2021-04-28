@@ -6,6 +6,13 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 def SendNNData(ToSend):
+    """
+    Sends mail with visulaztion attachemnts to a user
+    
+    Parameters:
+    ___________
+    ToSend - email address to send
+    """
     with open("userdata.json") as f:
         content = f.read()
     EmailData = json.loads(content)
