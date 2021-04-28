@@ -9,7 +9,12 @@ import numpy as np
 
 
 def plot_stats(statistics, ylog=False, view=False, filename='avg_fitness.svg'):
-    """ Plots the population's average and best fitness. """
+    """
+    Plots the population's average and best fitness.
+    Returns:
+    ________
+    None
+    """
     if plt is None:
         warnings.warn("This display is not available due to a missing optional dependency (matplotlib)")
         return
@@ -39,7 +44,12 @@ def plot_stats(statistics, ylog=False, view=False, filename='avg_fitness.svg'):
     plt.close()
 
 def plot_species(statistics, view=False, filename='speciation.svg'):
-    """ Visualizes speciation throughout evolution. """
+    """ 
+    Visualizes speciation throughout evolution. 
+    Returns:
+    ________
+    None
+    """
     if plt is None:
         warnings.warn("This display is not available due to a missing optional dependency (matplotlib)")
         return
@@ -65,7 +75,12 @@ def plot_species(statistics, view=False, filename='speciation.svg'):
 
 def draw_net(config, genome, view=False, filename=None, node_names=None, show_disabled=True, prune_unused=False,
              node_colors=None, fmt='svg'):
-    """ Receives a genome and draws a neural network with arbitrary topology. """
+    """ 
+    Receives a genome and draws a neural network with arbitrary topology. 
+    Returns:
+    _______
+    dot: graphviz object
+    """
     # Attributes for network nodes.
     if graphviz is None:
         warnings.warn("This display is not available due to a missing optional dependency (graphviz)")

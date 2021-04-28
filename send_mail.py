@@ -7,11 +7,16 @@ from email.mime.text import MIMEText
 
 def SendNNData(ToSend):
     """
-    Sends mail with visulaztion attachemnts to a user
+    Sends mail with visulaztion attachments to a user
     
     Parameters:
     ___________
     ToSend - email address to send
+    
+    Returns:
+    ________
+    e: Error if error occurs
+    None: If no errors happens
     """
     with open("userdata.json") as f:
         content = f.read()

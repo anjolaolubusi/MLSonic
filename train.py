@@ -21,6 +21,10 @@ def eval_genome(genome, config):
     _________
     genome: The genome
     config: The NEAT Configuration file as an object.
+    
+    Returns:
+    _______
+    fitness_curent: The fitness level of the genome
     '''
     genome.fitneess = 4.0
     ob = env.reset()
@@ -73,11 +77,15 @@ def eval_genome(genome, config):
 
 def run(config_file):
     '''
-    Imports configuration file, set ups training space, runs trainings, creates the visulaizations and send the best genome and the visulizations to Karen and I
+    Imports configuration file, set ups training space, runs trainings, creates the visulizations and sends the best genome and the visulizations to Karen and I
 
     Parameter:
     _________
     config_file: Path to config file
+    
+    Returns:
+    ________
+    None
     '''
     config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
             neat.DefaultSpeciesSet, neat.DefaultStagnation, config_file)
