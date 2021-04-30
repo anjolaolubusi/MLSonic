@@ -18,8 +18,6 @@ To see the best genome complete the level, you can type:
 python test-genome.py
 ```
 
-
 ## Authors
 - [Anjolaoluwa Olubusi](https://github.com/anjolaolubusi)
 - [Karen Suzue](https://github.com/karensuzue)
-
