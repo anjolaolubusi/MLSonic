@@ -1,23 +1,25 @@
 # MLSonic
-This project is designed to test a machine learning algorithm against the sonic games. This algorithm will try and complete the level in the shortest time possible. I.e SONIC GO SUPER VROOM
+This project is designed to test a machine learning algorithm against the sonic games. This algorithm will try and complete the level.
+
+## Setup
+First, make sure you are using Python 3.8. Secondly, have a virtual enviroment. Then, proceed to install the neccessary packages by opening the cloned directory in a console and typing:
+```
+pip install -r requirements.txt
+```
+Once all the packages has been installed, copy the rom.md file to ```[NAME OF VIRTUAL ENV]/lib/python3.8/site-packages/retro/data/stable/SonicTheHedgehog-Genesis```
 
 ## Running
-You would need a userdata.json
+To run the NEAT training, you can type: 
+```
+python train.py
+```
+To see the best genome complete the level, you can type:
+```
+python test-genome.py
+```
 
-## Language and Documentation
- - Python
- - Use multi-line comments to describe functions
-
-## Pull-request Procedure 
-- Let your group partner check before you do a pull request
-
-## Meeting Times
-- 8pm for Anjola and 9am for Karen 
-
-## To-do
-- Research Algorithm to use - Karen
-- Set up testing environment - Anjola
 
 ## Authors
 - [Anjolaoluwa Olubusi](https://github.com/anjolaolubusi)
 - [Karen Suzue](https://github.com/karensuzue)
+

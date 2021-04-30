@@ -1,3 +1,6 @@
+#Script Written by CodeReclaimers
+#Link to orignal file: https://github.com/CodeReclaimers/neat-python/blob/master/examples/xor/visualize.py
+
 from __future__ import print_function
 
 import copy
